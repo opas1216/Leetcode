@@ -107,33 +107,97 @@ def isSubsequence(s: str, t: str) -> bool:
 # Merge Two Sorted Lists
 #
 # Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        result = ListNode(self)
-        if list1.val <= list2.val:
-            result.val = list1.val
-        else:
-            result.val = list2.val
-        while(list1.next!= None or list2.next!= None):
-            print(f"list1 value = {list1.val}")
-            if list1.val <= list2.val:
-                result.next = list1.next
-                list1 = list1.next
-            else:
-                result.next = list2.next
-                list2 = list2.next
-        print(result)
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# class Solution:
+#     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+#         result = ListNode(self)
+#         if list1.val <= list2.val:
+#             result.val = list1.val
+#         else:
+#             result.val = list2.val
+#         while(list1.next!= None or list2.next!= None):
+#             print(f"list1 value = {list1.val}")
+#             if list1.val <= list2.val:
+#                 result.next = list1.next
+#                 list1 = list1.next
+#             else:
+#                 result.next = list2.next
+#                 list2 = list2.next
+#         print(result)
+    # Better way #1 from Leetcode
+    # if list1 is None:
+    #     print(list2)
+    #     return list2
+    # elif list2 is None:
+    #     print(list1)
+    #     return list1
+    # elif list1.val < list2.val:
+    #     list1.next = self.mergeTwoLists(list1.next, list2)
+    #     print(list1)
+    #     return list1
+    # else:
+    #     list2.next = self.mergeTwoLists(list1, list2.next)
+    #     print(list2)
+    #     return list2
+    #
+    #
+    # Better way #2 from Leetcode
+    # dummy = cur = ListNode(0)
+    # print(f"list1 and list2 = {list1 and list2}")
+    # print(f"list1 = {list1}, list2 = {list2}")
+    # while list1 and list2:
+    #     print(f"list1.val = {list1.val}, list2.val = {list2.val}")
+    #     print(f"""cur = {cur}
+    #     dummy = {dummy}""")
+    #     if list1.val < list2.val:
+    #         cur.next = list1
+    #         list1 = list1.next
+    #     else:
+    #         cur.next = list2
+    #         list2 = list2.next
+    #     print(f"""cur = {cur}
+    #     dummy = {dummy}""")
+    #     cur = cur.next
+    #     print(f"""After assign next to cur
+    #     cur = {cur}
+    #     dummy = {dummy}""")
+    #     # print(f"dummy = {dummy}")
+    #     print("")
+    # cur.next = list1 or list2
+    # return dummy.next
 
+# 206. Reverse Linked List
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# class Solution:
+#     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
+def find_length(nums, k):
+    left = curr = ans = 0
+    for right in range(len(nums)):
+        print(f"right = {right}, nums[{right}] = {nums[right]}")
+        curr += nums[right]
+        print(f"curr = {curr}")
+        while curr > k:
+            curr -= nums[left]
+            left += 1
+            print(f"left = {left}")
+        print(f"ans = {ans}, current length = right {right} - left {left} + 1 = {right - left + 1}")
+        ans = max(ans, right - left + 1)
+        print(f"ans = {ans}")
 
-
+    return ans
 
 
 if __name__ == '__main__':
+    print(f"find_length = {find_length([3, 1, 2, 7, 4, 2, 1, 1, 5], 8)}")
+
     # print("Result = {}".format(pivotIndex([1, 7, 3, 6, 5, 6])))
     # print("Result = {}".format(pivotIndex([1,2,3])))
     # print("Result = {}".format(pivotIndex([-1,-1,-1,-1,-1,0])))
@@ -143,9 +207,28 @@ if __name__ == '__main__':
     # print(f"Result = {isIsomorphic('paper', 'title')}")
     # print(isSubsequence("abc", "ahbgdc"))
     # print(isSubsequence("axc", "ahbgdc"))
-    solution = Solution
-    print(mergeTwoLists)
-
-
-
+    # a = b = c = [1, 100 , 200]
+    # print(f"a = {a}")
+    # print(f"b = {b}")
+    # print(f"c = {c}")
+    # c[0] = 1000
+    # print(f"a = {a}")
+    # print(f"b = {b}")
+    # print(f"c = {c}")
+    # b[1] = 2000
+    # print(f"a = {a}")
+    # print(f"b = {b}")
+    # print(f"c = {c}")
+    # b = b[1:]
+    # print(f"a = {a}")
+    # print(f"b = {b}")
+    # print(f"c = {c}")
+    # c[1] = 400
+    # print(f"a = {a}")
+    # print(f"b = {b}")
+    # print(f"c = {c}")
+    # c[2] = 400000
+    # print(f"a = {a}")
+    # print(f"b = {b}")
+    # print(f"c = {c}")
 
